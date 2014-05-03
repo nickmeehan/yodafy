@@ -4,7 +4,7 @@ get '/sessions/new' do
 end
 
 post '/sessions' do
-	
+
 end
 
 
@@ -17,4 +17,15 @@ end
 
 get '/users/new' do
 	erb :_signup, layout: false
+end
+
+
+post '/users' do
+	@user = User.new(params)
+	if @user.save
+		session[:user_id] = @user.id
+		redirect '/'
+	else
+		redirect '/wrongo'
+	end
 end
