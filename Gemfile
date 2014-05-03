@@ -17,6 +17,10 @@ gem 'rake'
 
 gem 'shotgun'
 
+# App Specific
+gem 'unirest'
+gem 'twilio-ruby'
+
 group :test do
   gem 'faker'
   gem 'rspec'
