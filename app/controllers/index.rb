@@ -11,6 +11,6 @@ get '/wrongo' do
 	"unable to save"
 end
 
-get 'loggedin' do
+get '/loggedin' do
 	"yup, we're logged in"
 end
