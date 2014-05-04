@@ -9,8 +9,27 @@ post '/messages' do
 
 	response = Unirest::get "https://yoda.p.mashape.com/yoda?sentence=#{string}", 
 	  headers: { 
-	    "X-Mashape-Authorization" => "V3aul3RVJ78iOZXnCrhROw1IUrhtoo0v"
+	    "X-Mashape-Authorization" => ""
 	  }
+
+	account_sid = ''
+	auth_token = ''
+
+	@client = Twilio::REST::Client.new account_sid, auth_token
+ 
+	message = @client.account.messages.create(
+	:body => "#{response.body}",
+  :to => "+1",     # Replace with your phone number
+  :from => "+1")
+
+  p message.sid
+
+
+
+
+
+
+
 	content_type :json
 	response.body.to_json
 end
