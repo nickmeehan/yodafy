@@ -1,3 +1,7 @@
+#new_yoda_message {
+	display: none;
+}
+
 .container {
   margin: 20px auto;
   width: 640px;
@@ -9,11 +13,34 @@ th {
   text-align: left;
 }
 
-.homepage {
+.landingpage {
 	display: block;
 	text-align: center;
 }
 
+nav ul {
+	list-style-type: none;
+	list-style-position: 
+}
+
+nav ul li {
+	display: inline;
+}
+
+article.contact_message {
+	width: 600px;
+	height: 100px;
+	border: 1px dotted green;
+}
+
 input {
+	display: block;
+}
+
+select {
+	display: block;
+}
+
+textarea {
 	display: block;
 }

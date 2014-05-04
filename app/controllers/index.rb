@@ -1,10 +1,16 @@
 get '/' do
   if logged_in?
-  	redirect '/loggedin'
+  	erb :home_page
   else
 	  erb :index
 	end
 end
+
+
+
+
+
+
 
 
 get '/wrongo' do
