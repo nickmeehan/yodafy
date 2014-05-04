@@ -22,7 +22,7 @@ Controller.prototype = {
 		$('nav').on('click', '#new_message', this.getNewMessageBox.bind(this))
 		$('nav').on('click', '#all_contacts', this.getAllContacts.bind(this))
 		$('nav').on('click', '#add_contact', this.getAddContactBox.bind(this))
-		$('.message').on('click', this.sendNewMessage.bind(this))
+		$('.homepage').on('click', '.contact_message .send_message', this.sendNewMessage.bind(this))
 	},
 	getSignInForm: function(event) {
 		event.preventDefault();
@@ -58,7 +58,14 @@ Controller.prototype = {
 	},
 	sendNewMessage: function(event) {
 		event.preventDefault();
-		console.log(event.target.href)
+		// console.log(event.target.form.action)
+		// console.log(event.target.form.content.value)
+		var ajaxRequest = $.ajax({
+			url: event.target.form.action,
+			type: 'POST',
+			data: { content: event.target.form.content.value }
+		})
+		ajaxRequest.done(this.view.displayNewYodaMessage)
 	}
 }
 
@@ -76,7 +83,9 @@ View.prototype = {
 		$('.container').append(response);
 	},
 	displayNewMessageBox: function(response) {
-		console.log(response);
 		$('.homepage').append(response);
+	},
+	displayNewYodaMessage: function(response) {
+		console.log(response);
 	}
 }

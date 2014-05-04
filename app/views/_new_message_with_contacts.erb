@@ -1,4 +1,4 @@
-<article class="message">
+<article class="contact_message">
 	<form action="/messages" method="post">
 		<select name="name">
 			<% @contacts.each do |contact| %>
@@ -6,6 +6,6 @@
 			<% end %>
 		</select>
 		<textarea name="content"></textarea>
-		<input type="submit" value="Send">
+		<input class="send_message" type="submit" value="Send">
 	</form>
 </article>

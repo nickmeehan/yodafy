@@ -4,5 +4,13 @@ get '/messages/new' do
 end
 
 post '/messages' do
-	
+	string = params[:content].split(" ").join("%20")
+	p string
+
+	response = Unirest::get "https://yoda.p.mashape.com/yoda?sentence=#{string}", 
+	  headers: { 
+	    "X-Mashape-Authorization" => "V3aul3RVJ78iOZXnCrhROw1IUrhtoo0v"
+	  }
+	content_type :json
+	response.body.to_json
 end
