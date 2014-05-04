@@ -19,8 +19,8 @@ post '/messages' do
  
 	message = @client.account.messages.create(
 	:body => "#{string}", #"#{response.body}",
-  :to => "+14033702505",     # Replace with your phone number
-  :from => "+14378002073")
+  :to => ENV['MY_NUMBER'],     # Replace with your phone number
+  :from => ENV['TWILIO_NUMBER'])
 
   p message.sid
 
