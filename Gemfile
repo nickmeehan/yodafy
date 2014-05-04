@@ -17,7 +17,6 @@ gem 'rake'
 gem 'bcrypt'
 
 gem 'shotgun'
-gem 'rack-flash3'
 
 # App Specific
 gem 'unirest'
