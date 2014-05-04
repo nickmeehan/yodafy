@@ -65,7 +65,7 @@ Controller.prototype = {
 			type: 'POST',
 			data: { content: event.target.form.content.value }
 		})
-		ajaxRequest.done(this.view.displayNewYodaMessage)
+		ajaxRequest.done(this.view.displayNewYodaMessage.bind(this))
 	}
 }
 
@@ -83,9 +83,18 @@ View.prototype = {
 		$('.container').append(response);
 	},
 	displayNewMessageBox: function(response) {
-		$('.homepage').append(response);
+		$('.homepage').prepend(response);
 	},
 	displayNewYodaMessage: function(response) {
-		console.log(response);
+		var newYodaMessage = $('.yoda_message').clone();
+		var readyMessage = this.view.newYodaMessageHelper(newYodaMessage, response);
+		$('.homepage').prepend(readyMessage);
+	},
+	newYodaMessageHelper: function(message, response) {
+		message.find('.yoda_content').text(response);
+		$(message).css('display', 'block');
+		$(message).removeClass('yoda_message');
+		$('.contact_message').remove();
+		return message
 	}
 }
