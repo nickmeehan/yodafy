@@ -44,7 +44,7 @@ configure do
 end
 
 
-env_config = YAML.load_file(APP_ROOT.join('config', 'api_keys.yaml'))
+env_config = YAML.load_file(APP_ROOT.join('config', 'api_testing.yaml'))
 
 env_config.each do |key, value|
   ENV[key] = value
