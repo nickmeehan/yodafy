@@ -66,7 +66,7 @@ Controller.prototype = {
 			data: { content: event.target.form.content.value }
 		})
 		ajaxRequest.done(this.view.displayNewYodaMessage.bind(this))
-		ajaxRequest.fail(this.view.displayNewYodaMessage.bind(this))
+		ajaxRequest.fail(this.view.displayNewYodaMessageErrors.bind(this))
 	}
 }
 
@@ -87,7 +87,6 @@ View.prototype = {
 		$('.homepage').prepend(response);
 	},
 	displayNewYodaMessage: function(response) {
-		console.log(response);
 		var newYodaMessage = $('.yoda_message').clone();
 		var readyMessage = this.view.newYodaMessageHelper(newYodaMessage, response);
 		$('.homepage').prepend(readyMessage);
@@ -98,5 +97,10 @@ View.prototype = {
 		$(message).removeClass('yoda_message');
 		$('.contact_message').remove();
 		return message
+	},
+	displayNewYodaMessageErrors: function(response) {
+		parsedResponse = $.parseJSON(response.responseText);
+		$('.contact_message').remove();
+		alert(parsedResponse.error);
 	}
 }

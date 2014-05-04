@@ -11,7 +11,7 @@ post '/messages' do
 	# This method will need to be changed once contacts are instituted
 	# and it will become an instance method for the current user.
 	# User.find(current_user).send_message(content, contact_id)
-	message_status = User.send_message(string)
+	message_status = User.find(current_user).send_message(string)
 
 	p message_status
 
@@ -22,7 +22,7 @@ post '/messages' do
 	else
 		status 422
 		content_type :json
-		message_status.to_json
+		{ error: message_status }.to_json
 	end
 	# response.body.to_json
 end

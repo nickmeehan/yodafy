@@ -1,0 +1,9 @@
+<% if messages %>
+	<% messages.each do |message| %>
+		<article>
+			<span class="contact_name"></span>
+			<span class="created_at"></span>
+			<p class="yoda_content"><%= message.content %></p>
+		</article>
+	<% end %>
+<% end %>

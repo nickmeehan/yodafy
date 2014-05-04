@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
 
 
-  def self.send_message(content, contact_id = 0)
+  def send_message(content, contact_id = 0)
   	p "made it into send message method"
 		account_sid = ENV['ACCOUNT_SID']
 		auth_token = ENV['AUTH_TOKEN']
@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
 		if error
 			return error
 		else
-			# self.messages.create(content: message.body, contact_id: contact_id, message_sid: message.sid)
+			self.messages.create(content: message.body, contact_id: contact_id, message_sid: message.sid)
 			return "success"
 		end
   end
