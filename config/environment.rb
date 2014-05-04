@@ -20,6 +20,7 @@ require "sinatra/reloader" if development?
 
 require 'erb'
 require 'bcrypt'
+require 'rake-flash'
 
 # App Specific
 require 'unirest'
