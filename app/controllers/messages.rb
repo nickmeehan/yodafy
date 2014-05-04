@@ -4,23 +4,12 @@ get '/messages/new' do
 end
 
 post '/messages' do
-	string = params[:content].split(" ").join("%20")
+	content = Message.convert_to_yoda(params[:content])
 
-	response = Unirest::get "https://yoda.p.mashape.com/yoda?sentence=You%20will%20learn%20how%20to%20speak%20like%20me%20someday.%20%20Oh%20wait.", 
-	  headers: { 
-	    "X-Mashape-Authorization" => ENV['YODA_SPEAK']
-	  }
+	# This method will need to be changed once contacts are instituted
+	User.send_message(content)
 
-
-	account_sid = ENV['ACCOUNT_SID']
-	auth_token = ENV['AUTH_TOKEN']
-
-	@client = Twilio::REST::Client.new account_sid, auth_token
- 
-	message = @client.account.messages.create(
-	:body => "#{string}", #"#{response.body}",
-  :to => ENV['MY_NUMBER'],     # Replace with your phone number
-  :from => ENV['TWILIO_NUMBER'])
+	
 
   p message.sid
 
