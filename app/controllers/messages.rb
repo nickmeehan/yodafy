@@ -9,7 +9,7 @@ post '/messages' do
 
 	response = Unirest::get "https://yoda.p.mashape.com/yoda?sentence=#{string}", 
 	  headers: { 
-	    "X-Mashape-Authorization" => "V3aul3RVJ78iOZXnCrhROw1IUrhtoo0v"
+	    "X-Mashape-Authorization" => ""
 	  }
 	content_type :json
 	response.body.to_json
