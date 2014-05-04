@@ -6,9 +6,7 @@ get '/' do
 	end
 end
 
-get '/messages/new' do
-	erb :_new_message, layout: false
-end
+
 
 
 

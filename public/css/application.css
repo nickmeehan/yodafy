@@ -9,13 +9,9 @@ th {
   text-align: left;
 }
 
-.homepage {
+.landingpage {
 	display: block;
 	text-align: center;
-}
-
-input {
-	display: block;
 }
 
 nav ul {
@@ -25,4 +21,22 @@ nav ul {
 
 nav ul li {
 	display: inline;
+}
+
+article.message {
+	width: 600px;
+	height: 100px;
+	border: 1px dotted green;
+}
+
+input {
+	display: block;
+}
+
+select {
+	display: block;
+}
+
+textarea {
+	display: block;
 }

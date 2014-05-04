@@ -1,0 +1,11 @@
+<article class="message">
+	<form action="/messages" method="post">
+		<select name="name">
+			<% @contacts.each do |contact| %>
+				<option value="<%= contact.id %>"><%= contact.name %></option>
+			<% end %>
+		</select>
+		<textarea name="content"></textarea>
+		<input type="submit" value="Send">
+	</form>
+</article>
