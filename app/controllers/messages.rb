@@ -5,22 +5,22 @@ end
 
 post '/messages' do
 	string = params[:content].split(" ").join("%20")
-	p string
 
-	response = Unirest::get "https://yoda.p.mashape.com/yoda?sentence=#{string}", 
+	response = Unirest::get "https://yoda.p.mashape.com/yoda?sentence=You%20will%20learn%20how%20to%20speak%20like%20me%20someday.%20%20Oh%20wait.", 
 	  headers: { 
-	    "X-Mashape-Authorization" => ""
+	    "X-Mashape-Authorization" => ENV['YODA_SPEAK']
 	  }
 
-	account_sid = ''
-	auth_token = ''
+
+	account_sid = ENV['ACCOUNT_SID']
+	auth_token = ENV['AUTH_TOKEN']
 
 	@client = Twilio::REST::Client.new account_sid, auth_token
  
 	message = @client.account.messages.create(
-	:body => "#{response.body}",
-  :to => "+1",     # Replace with your phone number
-  :from => "+1")
+	:body => "#{string}", #"#{response.body}",
+  :to => "+14033702505",     # Replace with your phone number
+  :from => "+14378002073")
 
   p message.sid
 
@@ -31,5 +31,8 @@ post '/messages' do
 
 
 	content_type :json
-	response.body.to_json
+
+	string.to_json
+	# response.body.to_json
 end
+
