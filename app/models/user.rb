@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
 
 		if error
 			return error
+		elsif message.body.match(/<html>/)
+			return "failure"
 		else
 			self.messages.create(content: message.body, contact_id: contact_id, message_sid: message.sid)
 			return "success"

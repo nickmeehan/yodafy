@@ -99,8 +99,12 @@ View.prototype = {
 		return message
 	},
 	displayNewYodaMessageErrors: function(response) {
-		parsedResponse = $.parseJSON(response.responseText);
+		if (response.status === 500) {
+			alert("An error occurred. Please try again later.")
+		} else {
+			parsedResponse = $.parseJSON(response.responseText);
+			alert(parsedResponse.error);
+		}
 		$('.contact_message').remove();
-		alert(parsedResponse.error);
 	}
 }
