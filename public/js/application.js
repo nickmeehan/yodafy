@@ -55,6 +55,12 @@ Controller.prototype = {
 	getAddContactBox: function(event) {
 		event.preventDefault();
 		console.log(event.target.href)
+		this.view.hideMessages();
+		var ajaxRequest = $.ajax({
+			url: event.target.href,
+			type: 'GET'
+		})
+		// ajaxRequest.done(this.view.display)
 	},
 	sendNewMessage: function(event) {
 		event.preventDefault();
@@ -106,5 +112,11 @@ View.prototype = {
 			alert(parsedResponse.error);
 		}
 		$('.contact_message').remove();
+	},
+	hideMessages: function() {
+		$('article').css('display', 'none');
+	},
+	unhideMessages: function() {
+		$('article').css('display', 'block');		
 	}
 }

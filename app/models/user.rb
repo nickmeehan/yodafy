@@ -18,9 +18,13 @@ class User < ActiveRecord::Base
 
 
   def send_message(content, contact_id = 0)
-  	p "made it into send message method"
 		account_sid = ENV['ACCOUNT_SID']
 		auth_token = ENV['AUTH_TOKEN']
+		
+		if content.match(/<html>/)
+			return "failure"
+		end
+
 		begin
 			@client = Twilio::REST::Client.new account_sid, auth_token
 			# The :to and :from in this case will change depending on the User and the Contact
@@ -37,8 +41,6 @@ class User < ActiveRecord::Base
 
 		if error
 			return error
-		elsif message.body.match(/<html>/)
-			return "failure"
 		else
 			self.messages.create(content: message.body, contact_id: contact_id, message_sid: message.sid)
 			return "success"
