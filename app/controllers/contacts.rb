@@ -3,7 +3,7 @@ get '/contacts/new' do
 end
 
 post '/contacts' do
-	@new_contact = Contact.new(params)
+	@new_contact = User.find(current_user).contacts.new(params)
 	if @new_contact.save
 		status 200
 	else

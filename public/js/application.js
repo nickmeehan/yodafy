@@ -60,7 +60,7 @@ Controller.prototype = {
 			url: event.target.href,
 			type: 'GET'
 		})
-		// ajaxRequest.done(this.view.display)
+		ajaxRequest.done(this.view.displayNewContactForm)
 	},
 	sendNewMessage: function(event) {
 		event.preventDefault();
@@ -118,5 +118,8 @@ View.prototype = {
 	},
 	unhideMessages: function() {
 		$('article').css('display', 'block');		
+	},
+	displayNewContactForm: function(response) {
+		$('.homepage').prepend(response);
 	}
 }

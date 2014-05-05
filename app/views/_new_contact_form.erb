@@ -1,11 +1,9 @@
 <article class="add_contact">
+	<figure class="contact_photo"></figure>
+	
 	<form action="/contacts" method="post">
-		<select name="name">
-			<% @contacts.each do |contact| %>
-				<option value="<%= contact.id %>"><%= contact.name %></option>
-			<% end %>
-		</select>
-		<textarea name="content"></textarea>
-		<input class="send_message" type="submit" value="Send">
+		<input type="text" name="name" placeholder="name">
+		<input type="text" name="phone_number" placeholder="number">
+		<input class="save_contact" type="submit" value="save contact, you will">
 	</form>
 </article>
