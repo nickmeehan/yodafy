@@ -55,6 +55,12 @@ Controller.prototype = {
 	getAddContactBox: function(event) {
 		event.preventDefault();
 		console.log(event.target.href)
+		this.view.hideMessages();
+		var ajaxRequest = $.ajax({
+			url: event.target.href,
+			type: 'GET'
+		})
+		ajaxRequest.done(this.view.displayNewContactForm)
 	},
 	sendNewMessage: function(event) {
 		event.preventDefault();
@@ -99,8 +105,21 @@ View.prototype = {
 		return message
 	},
 	displayNewYodaMessageErrors: function(response) {
-		parsedResponse = $.parseJSON(response.responseText);
+		if (response.status === 500) {
+			alert("An error occurred. Please try again later.")
+		} else {
+			parsedResponse = $.parseJSON(response.responseText);
+			alert(parsedResponse.error);
+		}
 		$('.contact_message').remove();
-		alert(parsedResponse.error);
+	},
+	hideMessages: function() {
+		$('article').css('display', 'none');
+	},
+	unhideMessages: function() {
+		$('article').css('display', 'block');		
+	},
+	displayNewContactForm: function(response) {
+		$('.homepage').prepend(response);
 	}
 }
