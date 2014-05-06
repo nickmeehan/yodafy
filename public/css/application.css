@@ -15,7 +15,7 @@ th {
 
 section.homepage {
 	height: 800px;
-	overflow: scroll;
+	overflow: auto;
 	border: 1px dotted black;
 
 }
