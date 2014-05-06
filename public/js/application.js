@@ -108,6 +108,7 @@ View.prototype = {
 	},
 	displayNewMessageBox: function(response) {
 		this.view.hideMessages()
+		$('.homepage_contact').remove()
 		$('.homepage').prepend(response);
 	},
 	displayNewYodaMessage: function(response) {
@@ -139,6 +140,7 @@ View.prototype = {
 		$('article').css('display', 'block');		
 	},
 	displayNewContactForm: function(response) {
+		$('.homepage_contact').remove()
 		$('.homepage').prepend(response);
 	},
 	displayNewContactConfirmation: function(response) {
@@ -154,7 +156,7 @@ View.prototype = {
 	displayAllContacts: function(response) {
 		console.log(response);
 		this.view.hideMessages();
-		$('.homepage').append(response)
+		$('.homepage').append(response);
 		// for(var i = 0; i < response.length; i++) {
 		// 	this.view.displayAllContactsHelper(response[i].contact)
 		// }

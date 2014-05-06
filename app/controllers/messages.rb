@@ -4,6 +4,7 @@ get '/messages/new' do
 end
 
 post '/messages' do
+	
 	content = Message.convert_to_yoda(params[:content])
 	# contact_id = params[:contact_id]
 	# string = params[:content]
