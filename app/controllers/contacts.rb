@@ -14,3 +14,13 @@ post '/contacts' do
 		{ errors: @new_contact.errors.full_messages }.to_json
 	end
 end
+
+get '/contacts/all' do
+	@contacts = User.all_contacts(current_user)
+	erb :_all_contacts, layout: false
+end
+
+get '/contacts/:id' do
+
+
+end

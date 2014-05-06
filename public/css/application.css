@@ -13,6 +13,13 @@ th {
   text-align: left;
 }
 
+section.homepage {
+	height: 800px;
+	overflow: scroll;
+	border: 1px dotted black;
+
+}
+
 .landingpage {
 	display: block;
 	text-align: center;
@@ -49,10 +56,6 @@ article.add_contact {
 	width: 100%;
 }
 
-figure.contact_photo {
-	float: left;
-}
-
 
 figure.contact_photo {
 	background: url('images/yoda_profile.jpeg');
@@ -61,4 +64,14 @@ figure.contact_photo {
 	width: 200px;
 	border-radius: 10em;
 	display: inline-block;
+}
+
+figure.contact_photo.homepage {
+	background: url('images/yoda_profile_small.jpeg');
+	height: 100px;
+	width: 100px;
+}
+
+#contact_template {
+	display: none;
 }

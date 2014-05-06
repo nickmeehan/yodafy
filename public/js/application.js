@@ -47,7 +47,7 @@ Controller.prototype = {
 			url: event.target.href,
 			type: 'GET'
 		})
-		ajaxRequest.done(this.view.displayNewMessageBox)
+		ajaxRequest.done(this.view.displayNewMessageBox.bind(this))
 	},
 	sendNewMessage: function(event) {
 		event.preventDefault();
@@ -64,6 +64,11 @@ Controller.prototype = {
 	getAllContacts: function(event) {
 		event.preventDefault();
 		console.log(event.target.href)
+		var ajaxRequest = $.ajax({
+			url: event.target.href,
+			type: 'GET'
+		})
+		ajaxRequest.done(this.view.displayAllContacts.bind(this))
 	},
 	getAddContactBox: function(event) {
 		event.preventDefault();
@@ -102,11 +107,13 @@ View.prototype = {
 		$('.container').append(response);
 	},
 	displayNewMessageBox: function(response) {
+		this.view.hideMessages()
 		$('.homepage').prepend(response);
 	},
 	displayNewYodaMessage: function(response) {
 		var newYodaMessage = $('.yoda_message').clone();
 		var readyMessage = this.view.newYodaMessageHelper(newYodaMessage, response);
+		this.view.unhideMessages()
 		$('.homepage').prepend(readyMessage);
 	},
 	newYodaMessageHelper: function(message, response) {
@@ -140,6 +147,23 @@ View.prototype = {
 		alert(response["success"]);
 	},
 	displayNewContactFailure: function(response) {
-
+		$('.add_contact').remove();
+		this.view.unhideMessages();
+		alert(response["errors"]);		
+	},
+	displayAllContacts: function(response) {
+		console.log(response);
+		this.view.hideMessages();
+		$('.homepage').append(response)
+		// for(var i = 0; i < response.length; i++) {
+		// 	this.view.displayAllContactsHelper(response[i].contact)
+		// }
 	}
+	// displayAllContactsHelper: function(contact) {
+	// 	var contact = $('.homepage_contact').clone()
+	// 	$(contact).find('.contact_name').text(contact.name)
+	// 	$(contact).find('.contact_name').attr('href', '/contacts/' + contact.id)
+	// 	$(contact).css('display', 'block')
+	// 	$('.homepage').append(contact)
+	// }
 }
