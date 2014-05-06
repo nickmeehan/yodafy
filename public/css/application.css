@@ -46,8 +46,13 @@ textarea {
 }
 
 article.add_contact {
-	display: inline-block;
+	width: 100%;
 }
+
+figure.contact_photo {
+	float: left;
+}
+
 
 figure.contact_photo {
 	background: url('images/yoda_profile.jpeg');

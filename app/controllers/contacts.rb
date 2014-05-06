@@ -6,6 +6,8 @@ post '/contacts' do
 	@new_contact = User.find(current_user).contacts.new(params)
 	if @new_contact.save
 		status 200
+		content_type :json
+		{ success: "A new padawan, you have." }.to_json
 	else
 		status 422
 		content_type :json

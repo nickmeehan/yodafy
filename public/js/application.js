@@ -23,6 +23,7 @@ Controller.prototype = {
 		$('nav').on('click', '#all_contacts', this.getAllContacts.bind(this))
 		$('nav').on('click', '#add_contact', this.getAddContactBox.bind(this))
 		$('.homepage').on('click', '.contact_message .send_message', this.sendNewMessage.bind(this))
+		$('.homepage').on('click', '.save_contact', this.addNewContact.bind(this))
 	},
 	getSignInForm: function(event) {
 		event.preventDefault();
@@ -48,6 +49,18 @@ Controller.prototype = {
 		})
 		ajaxRequest.done(this.view.displayNewMessageBox)
 	},
+	sendNewMessage: function(event) {
+		event.preventDefault();
+		// console.log(event.target.form.action)
+		// console.log(event.target.form.content.value)
+		var ajaxRequest = $.ajax({
+			url: event.target.form.action,
+			type: 'POST',
+			data: { content: event.target.form.content.value }
+		})
+		ajaxRequest.done(this.view.displayNewYodaMessage.bind(this))
+		ajaxRequest.fail(this.view.displayNewYodaMessageErrors.bind(this))
+	},
 	getAllContacts: function(event) {
 		event.preventDefault();
 		console.log(event.target.href)
@@ -62,17 +75,16 @@ Controller.prototype = {
 		})
 		ajaxRequest.done(this.view.displayNewContactForm)
 	},
-	sendNewMessage: function(event) {
+	addNewContact: function(event) {
 		event.preventDefault();
-		// console.log(event.target.form.action)
-		// console.log(event.target.form.content.value)
+		console.log(event)
 		var ajaxRequest = $.ajax({
 			url: event.target.form.action,
 			type: 'POST',
-			data: { content: event.target.form.content.value }
+			data: { name: event.target.form[0].value, phone_number: event.target.form[1].value }
 		})
-		ajaxRequest.done(this.view.displayNewYodaMessage.bind(this))
-		ajaxRequest.fail(this.view.displayNewYodaMessageErrors.bind(this))
+		ajaxRequest.done(this.view.displayNewContactConfirmation.bind(this))
+		ajaxRequest.fail(this.view.displayNewContactFailure.bind(this))
 	}
 }
 
@@ -121,5 +133,13 @@ View.prototype = {
 	},
 	displayNewContactForm: function(response) {
 		$('.homepage').prepend(response);
+	},
+	displayNewContactConfirmation: function(response) {
+		$('.add_contact').remove();
+		this.view.unhideMessages();
+		alert(response["success"]);
+	},
+	displayNewContactFailure: function(response) {
+
 	}
 }
