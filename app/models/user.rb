@@ -15,7 +15,10 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
-
+  def self.all_contacts(current_user)
+  	# p User.find(current_user)
+  	contacts = self.find(current_user).contacts.order("name ASC")
+  end
 
   def send_message(content, contact_id = 0)
 		account_sid = ENV['ACCOUNT_SID']

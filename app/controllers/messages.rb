@@ -22,7 +22,7 @@ post '/messages' do
 	elsif message_status == "failure"
 		status 500
 		content_type :json
-		{ error: "An error occurred. Please try again later." }.to_json
+		{ error: "There has been a distrubance in the force." }.to_json
 	else
 		status 422
 		content_type :json

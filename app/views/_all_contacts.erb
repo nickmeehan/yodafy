@@ -1,0 +1,6 @@
+<% @contacts.each do |contact| %>
+	<div class="homepage_contact">
+	  <figure class="contact_photo homepage"></figure>
+	  <a class="contact_name" href="/contacts/<%= contact.id %>"><%= contact.name %></a>
+	</div>
+<% end %>

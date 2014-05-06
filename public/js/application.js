@@ -23,6 +23,7 @@ Controller.prototype = {
 		$('nav').on('click', '#all_contacts', this.getAllContacts.bind(this))
 		$('nav').on('click', '#add_contact', this.getAddContactBox.bind(this))
 		$('.homepage').on('click', '.contact_message .send_message', this.sendNewMessage.bind(this))
+		$('.homepage').on('click', '.save_contact', this.addNewContact.bind(this))
 	},
 	getSignInForm: function(event) {
 		event.preventDefault();
@@ -46,21 +47,7 @@ Controller.prototype = {
 			url: event.target.href,
 			type: 'GET'
 		})
-		ajaxRequest.done(this.view.displayNewMessageBox)
-	},
-	getAllContacts: function(event) {
-		event.preventDefault();
-		console.log(event.target.href)
-	},
-	getAddContactBox: function(event) {
-		event.preventDefault();
-		console.log(event.target.href)
-		this.view.hideMessages();
-		var ajaxRequest = $.ajax({
-			url: event.target.href,
-			type: 'GET'
-		})
-		ajaxRequest.done(this.view.displayNewContactForm)
+		ajaxRequest.done(this.view.displayNewMessageBox.bind(this))
 	},
 	sendNewMessage: function(event) {
 		event.preventDefault();
@@ -73,6 +60,36 @@ Controller.prototype = {
 		})
 		ajaxRequest.done(this.view.displayNewYodaMessage.bind(this))
 		ajaxRequest.fail(this.view.displayNewYodaMessageErrors.bind(this))
+	},
+	getAllContacts: function(event) {
+		event.preventDefault();
+		console.log(event.target.href)
+		var ajaxRequest = $.ajax({
+			url: event.target.href,
+			type: 'GET'
+		})
+		ajaxRequest.done(this.view.displayAllContacts.bind(this))
+	},
+	getAddContactBox: function(event) {
+		event.preventDefault();
+		console.log(event.target.href)
+		this.view.hideMessages();
+		var ajaxRequest = $.ajax({
+			url: event.target.href,
+			type: 'GET'
+		})
+		ajaxRequest.done(this.view.displayNewContactForm)
+	},
+	addNewContact: function(event) {
+		event.preventDefault();
+		console.log(event)
+		var ajaxRequest = $.ajax({
+			url: event.target.form.action,
+			type: 'POST',
+			data: { name: event.target.form[0].value, phone_number: event.target.form[1].value }
+		})
+		ajaxRequest.done(this.view.displayNewContactConfirmation.bind(this))
+		ajaxRequest.fail(this.view.displayNewContactFailure.bind(this))
 	}
 }
 
@@ -90,11 +107,13 @@ View.prototype = {
 		$('.container').append(response);
 	},
 	displayNewMessageBox: function(response) {
+		this.view.hideMessages()
 		$('.homepage').prepend(response);
 	},
 	displayNewYodaMessage: function(response) {
 		var newYodaMessage = $('.yoda_message').clone();
 		var readyMessage = this.view.newYodaMessageHelper(newYodaMessage, response);
+		this.view.unhideMessages()
 		$('.homepage').prepend(readyMessage);
 	},
 	newYodaMessageHelper: function(message, response) {
@@ -121,5 +140,30 @@ View.prototype = {
 	},
 	displayNewContactForm: function(response) {
 		$('.homepage').prepend(response);
+	},
+	displayNewContactConfirmation: function(response) {
+		$('.add_contact').remove();
+		this.view.unhideMessages();
+		alert(response["success"]);
+	},
+	displayNewContactFailure: function(response) {
+		$('.add_contact').remove();
+		this.view.unhideMessages();
+		alert(response["errors"]);		
+	},
+	displayAllContacts: function(response) {
+		console.log(response);
+		this.view.hideMessages();
+		$('.homepage').append(response)
+		// for(var i = 0; i < response.length; i++) {
+		// 	this.view.displayAllContactsHelper(response[i].contact)
+		// }
 	}
+	// displayAllContactsHelper: function(contact) {
+	// 	var contact = $('.homepage_contact').clone()
+	// 	$(contact).find('.contact_name').text(contact.name)
+	// 	$(contact).find('.contact_name').attr('href', '/contacts/' + contact.id)
+	// 	$(contact).css('display', 'block')
+	// 	$('.homepage').append(contact)
+	// }
 }
