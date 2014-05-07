@@ -163,6 +163,8 @@ View.prototype = {
 	displayNewYodaMessage: function(response) {
 		var newYodaMessage = $('.yoda_message').clone();
 		var readyMessage = this.view.newYodaMessageHelper(newYodaMessage, response);
+		console.log("this should make messages come back")
+		this.view.removeSectionContent()
 		this.view.unhideMessages()
 		$('.homepage').prepend(readyMessage);
 	},
@@ -170,18 +172,18 @@ View.prototype = {
 		message.find('.yoda_content').text(response);
 		$(message).css('display', 'block');
 		$(message).removeClass('yoda_message');
-		this.view.removeSectionContent()
 		return message
 	},
 	displayNewYodaMessageErrors: function(response) {
 		if (response.status === 500) {
-			alert("An error occurred. Please try again later.")
+			alert("There has been a distrubance in the force.")
 		} else {
 			parsedResponse = $.parseJSON(response.responseText);
 			alert(parsedResponse.error);
 		}
 		// $('.contact_message').remove();
 		this.view.removeSectionContent();
+		this.view.unhideMessages();
 	},
 	hideMessages: function() {
 		$('article').css('display', 'none');
