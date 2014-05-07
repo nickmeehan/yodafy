@@ -21,6 +21,25 @@ get '/contacts/all' do
 end
 
 get '/contacts/:id' do
+	@contact = User.find(current_user).contacts.find(params[:id])
+	content_type :json
+	@contact.to_json
+end
 
+get '/contacts/:id/edit' do
+	@contact = User.find(current_user).contacts.find(params[:id])
+	erb :_update_contact_form, layout: false	
+end
+
+put '/contacts/:id' do
+	User.find(current_user).contacts.find(params[:id]).update_attributes(
+		name: params[:name],
+		phone_number: params[:phone_number])
+	@contact = User.find(current_user).contacts.find(params[:id])
+	content_type :json
+	@contact.to_json
+end
+
+delete '/contacts/:id' do
 
 end

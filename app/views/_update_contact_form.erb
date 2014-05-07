@@ -1,0 +1,9 @@
+<article class="update_contact_form">
+	<figure class="contact_photo"></figure>
+	
+	<form action="/contacts/<%= @contact.id %>" method="post">
+		<input type="text" name="name" placeholder="name" value="<%= @contact.name %>">
+		<input type="text" name="phone_number" placeholder="number" value="<%= @contact.phone_number %>">
+		<input class="save_update" type="submit" value="update contact, you will">
+	</form>
+</article>

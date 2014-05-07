@@ -24,6 +24,10 @@ Controller.prototype = {
 		$('nav').on('click', '#add_contact', this.getAddContactBox.bind(this))
 		$('.homepage').on('click', '.contact_message .send_message', this.sendNewMessage.bind(this))
 		$('.homepage').on('click', '.save_contact', this.addNewContact.bind(this))
+		$('.homepage').on('click', '.homepage_contact', this.getContactProfile.bind(this))
+		$('.homepage').on('click', '.contact_links .update_contact', this.getUpdateContactForm.bind(this))
+		$('.homepage').on('click', '.contact_links .delete_contact', this.deleteContactInfo.bind(this))
+		$('.homepage').on('click', '.save_update', this.updateContactInfo.bind(this))
 	},
 	getSignInForm: function(event) {
 		event.preventDefault();
@@ -78,7 +82,7 @@ Controller.prototype = {
 			url: event.target.href,
 			type: 'GET'
 		})
-		ajaxRequest.done(this.view.displayNewContactForm)
+		ajaxRequest.done(this.view.displayNewContactForm.bind(this))
 	},
 	addNewContact: function(event) {
 		event.preventDefault();
@@ -86,10 +90,48 @@ Controller.prototype = {
 		var ajaxRequest = $.ajax({
 			url: event.target.form.action,
 			type: 'POST',
-			data: { name: event.target.form[0].value, phone_number: event.target.form[1].value }
+			data: { 
+				name: event.target.form[0].value, 
+				phone_number: event.target.form[1].value 
+			}
 		})
 		ajaxRequest.done(this.view.displayNewContactConfirmation.bind(this))
 		ajaxRequest.fail(this.view.displayNewContactFailure.bind(this))
+	},
+	getContactProfile: function(event) {
+		event.preventDefault()
+		console.log(event.target.href)
+		var ajaxRequest = $.ajax({
+			url: event.target.href,
+			type: 'GET'
+		})
+		ajaxRequest.done(this.view.displayContactProfile.bind(this))
+	},
+	getUpdateContactForm: function(event) {
+		event.preventDefault();
+		console.log(event.target.href)
+		var ajaxRequest = $.ajax({
+			url: event.target.href,
+			type: 'GET'
+		})
+		ajaxRequest.done(this.view.displayUpdateForm.bind(this))
+	},
+	updateContactInfo: function(event) {
+		event.preventDefault();
+		console.log(event)
+		var ajaxRequest = $.ajax({
+			url: event.target.form.action,
+			type: 'PUT',
+			data: { 
+				name: event.target.form[0].value, 
+				phone_number: event.target.form[1].value 
+			}
+		})
+		ajaxRequest.done(this.view.displayContactProfile.bind(this))
+	},
+	deleteContactInfo: function(event) {
+		event.preventDefault();
+		console.log(event.target.href)
 	}
 }
 
@@ -106,9 +148,16 @@ View.prototype = {
 		$('.landingpage').remove();
 		$('.container').append(response);
 	},
+	removeSectionContent: function() {
+		$('.homepage_contact').remove();
+		$('.add_contact').remove();
+		$('.contact_message').remove();
+		$('.profile').remove();
+		$('.update_contact_form').remove();
+	},
 	displayNewMessageBox: function(response) {
 		this.view.hideMessages()
-		$('.homepage_contact').remove()
+		this.view.removeSectionContent()
 		$('.homepage').prepend(response);
 	},
 	displayNewYodaMessage: function(response) {
@@ -121,7 +170,7 @@ View.prototype = {
 		message.find('.yoda_content').text(response);
 		$(message).css('display', 'block');
 		$(message).removeClass('yoda_message');
-		$('.contact_message').remove();
+		this.view.removeSectionContent()
 		return message
 	},
 	displayNewYodaMessageErrors: function(response) {
@@ -131,7 +180,8 @@ View.prototype = {
 			parsedResponse = $.parseJSON(response.responseText);
 			alert(parsedResponse.error);
 		}
-		$('.contact_message').remove();
+		// $('.contact_message').remove();
+		this.view.removeSectionContent();
 	},
 	hideMessages: function() {
 		$('article').css('display', 'none');
@@ -140,32 +190,46 @@ View.prototype = {
 		$('article').css('display', 'block');		
 	},
 	displayNewContactForm: function(response) {
-		$('.homepage_contact').remove()
+		this.view.removeSectionContent()
 		$('.homepage').prepend(response);
 	},
 	displayNewContactConfirmation: function(response) {
-		$('.add_contact').remove();
+		this.view.removeSectionContent();
 		this.view.unhideMessages();
 		alert(response["success"]);
 	},
 	displayNewContactFailure: function(response) {
-		$('.add_contact').remove();
+		this.view.removeSectionContent();
 		this.view.unhideMessages();
 		alert(response["errors"]);		
 	},
 	displayAllContacts: function(response) {
 		console.log(response);
 		this.view.hideMessages();
-		$('.homepage').append(response);
-		// for(var i = 0; i < response.length; i++) {
-		// 	this.view.displayAllContactsHelper(response[i].contact)
-		// }
+		this.view.removeSectionContent();
+		$('.homepage').prepend(response);
+
+	},
+	displayContactProfile: function(response) {
+		console.log(response.contact)
+		var profileTemplate = $('.contact').clone();
+		var contactProfile = this.view.contactProfileHelper(profileTemplate, response.contact)
+		this.view.removeSectionContent();
+		$('.homepage').prepend(contactProfile);
+	},
+	contactProfileHelper: function(contactTemplate, contactInfo) {
+		contactTemplate.find('.contact_name').text(contactInfo.name)
+		contactTemplate.find('.contact_number').text(contactInfo.phone_number)
+		contactTemplate.find('.contact_messages').attr('href', '/contacts/' + contactInfo.id + '/messages')
+		contactTemplate.find('.update_contact').attr('href', '/contacts/' + contactInfo.id + '/edit')
+		contactTemplate.find('.delete_contact').attr('href', '/contacts/' + contactInfo.id)
+		$(contactTemplate).addClass('profile');
+		$(contactTemplate).css('display', 'block');
+		return contactTemplate
+	},
+	displayUpdateForm: function(response) {
+		console.log(response)
+		this.view.removeSectionContent()
+		$('.homepage').prepend(response)
 	}
-	// displayAllContactsHelper: function(contact) {
-	// 	var contact = $('.homepage_contact').clone()
-	// 	$(contact).find('.contact_name').text(contact.name)
-	// 	$(contact).find('.contact_name').attr('href', '/contacts/' + contact.id)
-	// 	$(contact).css('display', 'block')
-	// 	$('.homepage').append(contact)
-	// }
 }
