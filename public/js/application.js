@@ -90,7 +90,10 @@ Controller.prototype = {
 		var ajaxRequest = $.ajax({
 			url: event.target.form.action,
 			type: 'POST',
-			data: { name: event.target.form[0].value, phone_number: event.target.form[1].value }
+			data: { 
+				name: event.target.form[0].value, 
+				phone_number: event.target.form[1].value 
+			}
 		})
 		ajaxRequest.done(this.view.displayNewContactConfirmation.bind(this))
 		ajaxRequest.fail(this.view.displayNewContactFailure.bind(this))
@@ -119,8 +122,12 @@ Controller.prototype = {
 		var ajaxRequest = $.ajax({
 			url: event.target.form.action,
 			type: 'PUT',
-			
+			data: { 
+				name: event.target.form[0].value, 
+				phone_number: event.target.form[1].value 
+			}
 		})
+		ajaxRequest.done(this.view.displayContactProfile.bind(this))
 	},
 	deleteContactInfo: function(event) {
 		event.preventDefault();
@@ -146,6 +153,7 @@ View.prototype = {
 		$('.add_contact').remove();
 		$('.contact_message').remove();
 		$('.profile').remove();
+		$('.update_contact_form').remove();
 	},
 	displayNewMessageBox: function(response) {
 		this.view.hideMessages()
