@@ -11,6 +11,11 @@ a:hover {
 	color: #543F23;
 }
 
+img {
+	height: 4em;
+	width: 4em;
+}
+
 header {
 	text-align: center;
 	/*position: fixed;*/
@@ -40,7 +45,7 @@ th {
 }
 
 section.homepage {
-	height: 800px;
+	height: 780px;
 	overflow: auto;
 	border: 1px dotted black;
 
@@ -60,13 +65,29 @@ a.landingpage {
 
 }
 
+nav {
+	background-color: #917A5C;
+	padding: 0.1em 0em;
+	width: 100%;
+}
+
 nav ul {
 	list-style-type: none;
-	list-style-position: 
 }
 
 nav ul li {
-	display: inline;
+	display: inline-block;
+	margin: 0em 1.1em;
+}
+
+nav ul li a {
+	color: #543F23;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+nav ul li a:hover {
+	color: #46592A;
 }
 
 article.contact_message {
@@ -156,7 +177,7 @@ input[type="password"] {
 
 #logout input[type="submit"]:hover {
 	color: #46592A;
-	
+
 }
 
 select {
