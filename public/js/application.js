@@ -178,6 +178,7 @@ View.prototype = {
 		message.find('.yoda_content').text(response);
 		$(message).css('display', 'block');
 		$(message).removeClass('yoda_message');
+		$(message).addClass('sent_message')
 		return message
 	},
 	displayNewYodaMessageErrors: function(response) {
