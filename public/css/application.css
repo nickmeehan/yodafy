@@ -18,11 +18,8 @@ img {
 
 header {
 	text-align: center;
-	/*position: fixed;*/
 	width: 100%;
-	/*top: 0.2em;*/
 	z-index: 1;
-	/*background-color: #C0CFC4;*/
 	background-color: #87A388;
 
 	color: #46592A;
@@ -35,10 +32,8 @@ header {
   margin: 0 auto;
   width: 640px;
   height: 1152px;
-  /*padding: 0px 20px 20px 20px;*/
   border: 1px dotted black;
   background-color: #C0CFC4;
-  /*background-color: #87A388;*/
 }
 th {
   text-align: left;
@@ -58,7 +53,6 @@ a.landingpage {
 	top: 9em;
 	padding: 1em 0.5em;
 	margin: 0.5em 0em;
-  /*background-color: #C0CFC4;*/
   background-color: #87A388;
 
 }
@@ -88,12 +82,6 @@ nav ul li a:hover {
 	color: #46592A;
 }
 
-/*article.contact_message {
-	width: 600px;
-	height: 100px;
-	border: 1px dotted green;
-}*/
-
 input {
 	display: block;
 	margin: 0.5em auto;
@@ -119,7 +107,6 @@ article.sent_message p {
 		font-weight: bold;
 		top: 9em;
 		padding: 0.5em 0em 0.5em 0em;
-		/*margin: 0.5em 0em;*/
 		background-color: #87A388;
 }
 
@@ -144,7 +131,6 @@ article.sent_message p {
 	font-weight: bold;
 	top: 9em;
 	padding: 0.5em 0em 0.5em 0em;
-	/*margin: 0.5em 0em;*/
 	background-color: #87A388;
 }
 
@@ -198,7 +184,6 @@ input[type="password"] {
 	font-weight: bold;
 	top: 1em;
 	padding: 0.5em 0em 0.5em 0em;
-	/*margin: 0.5em 0em;*/
 	background-color: #87A388;
 }
 
