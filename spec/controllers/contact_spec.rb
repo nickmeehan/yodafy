@@ -51,4 +51,22 @@ describe "post /contacts route" do
 
 	end
 
+	it "sends an error message as json string" do
+		## Arrange
+		User.destroy_all
+		@user = User.create(phone_number: "+14033130220",
+												email: "nick@nick.ca",
+												password: "password")
+		fake_session = { 'rack.session' => { user_id: @user.id } }
+		params = { phone_number: "+14039991234" }
+
+		## Act
+		post '/contacts', params, fake_session
+
+		## Assert
+		expected_output = { errors: ["Name can't be blank"] }.to_json
+		expect(last_response.body).to eq(expected_output)
+
+	end
+
 end
