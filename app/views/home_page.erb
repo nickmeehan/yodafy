@@ -13,7 +13,11 @@
     <%= erb :_sent_messages, :locals => { messages: @messages } %>
   </section>
 
-  <footer>sign-out</footer>
+  <footer>
+    <form action="/sessions" method="post">
+      <input name="_method" type="hidden" value="delete">
+      <input type="submit" value="sign-out">
+  </footer>
   <div id="contact_template">
     <article class="contact">
       <figure class="contact_photo"></figure>
