@@ -91,13 +91,14 @@ article.sent_message {
 	background-color: #87A388;
 	border-radius: 0.5em;
 	width: 100%;
+	margin: 1em 0em;
 }
 
 article.sent_message p {
 	font-size: 2em;
 	color: #46592A;
 	padding: 1em 0em;
-	margin: 0.5em 1em;
+	margin: 0em 1em;
 }
 
 .sign_in_form {
@@ -180,9 +181,9 @@ input[type="password"] {
 #new_message_form {
 	text-align: center;
 	position: relative;
+	margin: 0.33em 0em;
 	font-size: 3em;
 	font-weight: bold;
-	top: 1em;
 	padding: 0.5em 0em 0.5em 0em;
 	background-color: #87A388;
 }
@@ -201,11 +202,32 @@ input[type="password"] {
 	color: #46592A;
 }
 
+#add_contact_form {
+	text-align: center;
+	font-size: 3em;
+	font-weight: bold;
+	padding: 0.5em 0em 0.5em 0em;
+	background-color: #87A388;
+}
+
+#add_contact_form input[type="submit"] {
+	color: #543F23;
+	font-weight: bold;
+	background-color: #917A5C;
+	padding: 0.3em 0em;
+	width: 97%;
+	border: none;
+	border-radius: 0.5em;
+}
+
+#add_contact_form input[type="submit"]:hover {
+	color: #46592A;
+}
+
 select {
 	margin: 0.5em auto;
 	height: 3em;
 	width: 97%;
-
 }
 
 option {
@@ -227,24 +249,45 @@ textarea {
 	display: block;
 }
 
+article.homepage_contact {
+	background-color: #87A388;
+	border-radius: 0.5em;
+	width: 100%;
+	padding: 1em 0em;
+	margin: 1em 0em;
+}
+
+article.homepage_contact a {
+	vertical-align: middle;
+	font-size: 3em;
+	font-weight: bold;
+	margin: 0em 0.5em;
+}
+
+
 article.add_contact {
 	width: 100%;
 }
 
 
 figure.contact_photo {
-	background: url('images/yoda_profile.jpeg');
+	background: url('images/yoda_profile_large.jpeg');
 	background-repeat: no-repeat;
-	height: 200px;
-	width: 200px;
-	border-radius: 10em;
-	display: inline-block;
+	height: 325px;
+	width: 325px;
+	border-radius: 15em;
+	margin: 1em auto;
 }
 
 figure.contact_photo.homepage {
-	background: url('images/yoda_profile_small.jpeg');
-	height: 100px;
-	width: 100px;
+	background: url('images/yoda_profile_medium.jpeg');
+	height: 150px;
+	width: 150px;
+	vertical-align: middle;
+	display: inline-block;
+	position: relative;
+	margin: 0em;
+	left: 1em;
 }
 
 #contact_template {
