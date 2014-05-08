@@ -1,6 +1,6 @@
 <% @contacts.each do |contact| %>
-	<section class="homepage_contact">
+	<article class="homepage_contact">
 	  <figure class="contact_photo homepage" href="/contacts/<%= contact.id %>"></figure>
 	  <a class="contact_name" id="<%= contact.id %>" href="/contacts/<%= contact.id %>"><%= contact.name %></a>
-	</section>
+	</article>
 <% end %>
