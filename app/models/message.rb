@@ -14,7 +14,4 @@ class Message < ActiveRecord::Base
 
   	return response.body
   end
-
-
-
 end

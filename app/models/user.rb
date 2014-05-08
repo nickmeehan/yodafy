@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
   end
 
   def self.all_contacts(current_user)
-  	# p User.find(current_user)
   	contacts = self.find(current_user).contacts.order("name ASC")
   end
 
