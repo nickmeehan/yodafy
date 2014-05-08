@@ -88,24 +88,24 @@ nav ul li a:hover {
 	color: #46592A;
 }
 
-article.contact_message {
+/*article.contact_message {
 	width: 600px;
 	height: 100px;
 	border: 1px dotted green;
-}
+}*/
 
 input {
 	display: block;
 	margin: 0.5em auto;
 }
 
-article {
+article.sent_message {
 	background-color: #87A388;
 	border-radius: 0.5em;
 	width: 100%;
 }
 
-article p {
+article.sent_message p {
 	font-size: 2em;
 	color: #46592A;
 	padding: 1em 0em;
@@ -188,7 +188,50 @@ input[type="password"] {
 
 #logout input[type="submit"]:hover {
 	color: #46592A;
+}
 
+
+#new_message_form {
+	text-align: center;
+	position: relative;
+	font-size: 3em;
+	font-weight: bold;
+	top: 1em;
+	padding: 0.5em 0em 0.5em 0em;
+	/*margin: 0.5em 0em;*/
+	background-color: #87A388;
+}
+
+#new_message_form input[type="submit"] {
+	color: #543F23;
+	font-weight: bold;
+	background-color: #917A5C;
+	padding: 0.3em 0em;
+	width: 97%;
+	border: none;
+	border-radius: 0.5em;
+}
+
+#new_message_form input[type="submit"]:hover {
+	color: #46592A;
+}
+
+select {
+	margin: 0.5em auto;
+	height: 3em;
+	width: 97%;
+
+}
+
+option {
+	font-size: 3em;
+}
+
+textarea {
+	margin: 0 auto;
+	border-radius: 0.5em;
+	height: 4em;
+	width: 97%;
 }
 
 select {

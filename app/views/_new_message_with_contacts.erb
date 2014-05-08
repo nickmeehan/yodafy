@@ -1,5 +1,5 @@
 <article class="contact_message">
-	<form action="/messages" method="post">
+	<form id="new_message_form" action="/messages" method="post">
 		<select name="name">
 			<% @contacts.each do |contact| %>
 				<option value="<%= contact.id %>"><%= contact.name %></option>
