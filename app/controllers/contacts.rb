@@ -41,5 +41,17 @@ put '/contacts/:id' do
 end
 
 delete '/contacts/:id' do
+	begin
+		User.find(current_user).contacts.find(params[:id]).destroy
+	rescue StandardError => e
+		@errors = e.message
+	end
 
+	if @errors
+		status 422
+		content_type :json
+		@errors.to_json
+	else
+		status 200
+	end
 end
