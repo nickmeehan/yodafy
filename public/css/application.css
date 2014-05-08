@@ -47,8 +47,6 @@ th {
 section.homepage {
 	height: 780px;
 	overflow: auto;
-	border: 1px dotted black;
-
 }
 
 a.landingpage {
@@ -99,6 +97,19 @@ article.contact_message {
 input {
 	display: block;
 	margin: 0.5em auto;
+}
+
+article {
+	background-color: #87A388;
+	border-radius: 0.5em;
+	width: 100%;
+}
+
+article p {
+	font-size: 2em;
+	color: #46592A;
+	padding: 1em 0em;
+	margin: 0.5em 1em;
 }
 
 .sign_in_form {
