@@ -2,12 +2,38 @@
 	display: none;
 }
 
+a {
+	text-decoration: none;
+	color: #46592A;
+}
+
+a:hover {
+	color: #543F23;
+}
+
+header {
+	text-align: center;
+	/*position: fixed;*/
+	width: 100%;
+	/*top: 0.2em;*/
+	z-index: 1;
+	/*background-color: #C0CFC4;*/
+	background-color: #87A388;
+
+	color: #46592A;
+	padding: 0em 0em 0.4em 0em;
+	font-size: 6em;
+	font-weight: bolder;
+}
+
 .container {
-  margin: 20px auto;
+  margin: 0 auto;
   width: 640px;
-  height: 960px;
-  padding: 0px 20px 20px 20px;
+  height: 1152px;
+  /*padding: 0px 20px 20px 20px;*/
   border: 1px dotted black;
+  background-color: #C0CFC4;
+  /*background-color: #87A388;*/
 }
 th {
   text-align: left;
@@ -20,9 +46,18 @@ section.homepage {
 
 }
 
-.landingpage {
+a.landingpage {
 	display: block;
 	text-align: center;
+	position: relative;
+	font-size: 3em;
+	font-weight: bold;
+	top: 9em;
+	padding: 1em 0.5em;
+	margin: 0.5em 0em;
+  /*background-color: #C0CFC4;*/
+  background-color: #87A388;
+
 }
 
 nav ul {
@@ -42,6 +77,85 @@ article.contact_message {
 
 input {
 	display: block;
+	margin: 0.5em auto;
+}
+
+.sign_in_form {
+		text-align: center;
+		position: relative;
+		font-size: 3em;
+		font-weight: bold;
+		top: 9em;
+		padding: 0.5em 0em 0.5em 0em;
+		/*margin: 0.5em 0em;*/
+		background-color: #87A388;
+}
+
+.sign_in_form input[type="submit"] {
+	color: #543F23;
+	font-weight: bold;
+	background-color: #917A5C;
+	padding: 0.3em 0em;
+	width: 97%;
+	border: none;
+	border-radius: 0.5em;
+}
+
+.sign_in_form input[type="submit"]:hover {
+	color: #46592A;
+}
+
+.sign_up_form {
+	text-align: center;
+	position: relative;
+	font-size: 3em;
+	font-weight: bold;
+	top: 9em;
+	padding: 0.5em 0em 0.5em 0em;
+	/*margin: 0.5em 0em;*/
+	background-color: #87A388;
+}
+
+.sign_up_form input[type="submit"] {
+	color: #543F23;
+	font-weight: bold;
+	background-color: #917A5C;
+	padding: 0.3em 0em;
+	width: 97%;
+	border: none;
+	border-radius: 0.5em;
+}
+
+.sign_up_form input[type="submit"]:hover {
+	color: #46592A;
+}
+
+input[type="text"] {
+	border-radius: 0.5em;
+	width: 97%;
+	border: 0.05em solid #46592A;
+}
+
+input[type="password"] {
+	border-radius: 0.5em;
+	width: 97%;
+	border: 0.05em solid #46592A;
+}
+
+#logout input[type="submit"] {
+	color: #543F23;
+	font-weight: bold;
+	background-color: #917A5C;
+	padding: 0.3em 0em;
+	width: 97%;
+	border: none;
+	border-radius: 0.5em;
+	font-size: 3em;
+	font-weight: bold;
+}
+
+#logout input[type="submit"]:hover {
+	color: #46592A;
 }
 
 select {
