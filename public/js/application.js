@@ -132,6 +132,12 @@ Controller.prototype = {
 	deleteContactInfo: function(event) {
 		event.preventDefault();
 		console.log(event.target.href)
+		var ajaxRequest = $.ajax({
+			url: event.target.href,
+			type: 'DELETE'
+		})
+		ajaxRequest.done(this.view.refreshPage)
+		ajaxRequest.fail(this.view.displayDeletionErrors)
 	}
 }
 
@@ -233,5 +239,11 @@ View.prototype = {
 		console.log(response)
 		this.view.removeSectionContent()
 		$('.homepage').prepend(response)
+	},
+	refreshPage: function(response) {
+		location.reload();
+	},
+	displayDeletionErrors: function(response) {
+		console.log(response)
 	}
 }

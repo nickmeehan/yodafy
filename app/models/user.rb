@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
 		begin
 			@client = Twilio::REST::Client.new account_sid, auth_token
 			# The :to and :from in this case will change depending on the User and the Contact
-			# :to => self.phone_number
-			# :from => Contact.find(contact_id).phone_number
+			# :from => self.phone_number
+			# :to => Contact.find(contact_id).phone_number
 			message = @client.account.messages.create(
 				:body => "#{content}",
 			  :to => ENV['MY_NUMBER'],
