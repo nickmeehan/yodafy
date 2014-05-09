@@ -111,10 +111,8 @@ describe "get /contacts/all route" do
 		params = {}
 		fake_session = { 'rack.session' => { user_id: @user.id } }
 
-
 		## Act
 		get "/contacts/all", params, fake_session
-
 
 		# Assert
 		expect(last_response.body).to include("#{@contact1.name}")
