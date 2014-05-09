@@ -9,7 +9,7 @@ post '/sessions' do
 		session[:user_id] = @user.id
 		redirect '/'
 	else
-		redirect '/wrongo'
+		redirect '/'
 	end
 end
 
@@ -35,6 +35,6 @@ post '/users' do
 		session[:user_id] = @user.id
 		redirect '/'
 	else
-		redirect '/wrongo'
+		redirect '/'
 	end
 end
