@@ -146,12 +146,35 @@ describe "get /contacts/:id/edit route" do
 
 	end
 
-
 end
 
+describe "put /contacts/:id route" do
 
+	it "should return a pre-populated form with the contact's information" do
+		## Arrange
+		User.destroy_all
+		Contact.destroy_all
+		@user = User.create(phone_number: "+14033030220",
+												email: "nick@nick.ca",
+												password: "password")
+		@contact = Contact.create(phone_number: "+14039991234", name: "Han Solo")
+		@user.contacts << @contact
+		params = { id: @contact.id,
+							 name: "Luke Skywalker",
+							 phone_number: "+14035647382" }
+		fake_session = { 'rack.session' => { user_id: @user.id } }
 
+		## Act
+		put "/contacts/#{@contact.id}", params, fake_session
 
+		## Assert
+		@contact.update_attributes(name: "Luke Skywalker", phone_number: "+14035647382")
+		expected_output = @contact.to_json
+		expect(last_response.body).to eq(expected_output)
+
+	end
+
+end
 
 
 
