@@ -40,7 +40,7 @@ describe "post /messages route" do
 		new_content = "Just a message, this is."
 		Message.stub(:convert_to_yoda) { new_content }
 		message_status = "success"
-		User.stub(:send_message) { message_status }
+		User.stub_chain(:find, :send_message) { message_status }
 		fake_session = { 'rack.session' => { user_id: @user.id } }
 
 		## Act
@@ -52,26 +52,48 @@ describe "post /messages route" do
 
 	end
 
-	# it "should send back an error message when message_status is failure" do
-	# 	## Arrange
-	# 	User.destroy_all
-	# 	@user = User.create(phone_number: "+14033030220",
-	# 											email: "nick@nick.ca",
-	# 											password: "password")
-	# 	params = { content: "This is just a message." }
-	# 	new_content = "Just a message, this is."
-	# 	Message.stub(:convert_to_yoda) { new_content }
-	# 	message_status = "failure"
-	# 	User.stub(:send_message) { message_status }
-	# 	fake_session = { 'rack.session' => { user_id: @user.id } }
+	it "should send back an error message when message_status is failure" do
+		## Arrange
+		User.destroy_all
+		@user = User.create(phone_number: "+14033030220",
+												email: "nick@nick.ca",
+												password: "password")
+		params = { content: "This is just a message." }
+		new_content = "Just a message, this is."
+		Message.stub(:convert_to_yoda) { new_content }
+		message_status = "failure"
+		User.stub_chain(:find, :send_message) { message_status }
+		fake_session = { 'rack.session' => { user_id: @user.id } }
 
-	# 	## Act
-	# 	post "/messages", params, fake_session
+		## Act
+		post "/messages", params, fake_session
 
-	# 	# Assert
-	# 	expected_output = { error: "There has been a distrubance in the force." }.to_json
-	# 	expect(last_response.body).to eq(expected_output)
+		# Assert
+		expected_output = { error: "There has been a distrubance in the force." }.to_json
+		expect(last_response.body).to eq(expected_output)
 
-	# end
+	end
+
+	it "should send back an error message if error message is an error message" do
+		## Arrange
+		User.destroy_all
+		@user = User.create(phone_number: "+14033030220",
+												email: "nick@nick.ca",
+												password: "password")
+		params = { content: "This is just a message." }
+		new_content = "Just a message, this is."
+		Message.stub(:convert_to_yoda) { new_content }
+		message_status = "The number you've entered is non-existent."
+		User.stub_chain(:find, :send_message) { message_status }
+		fake_session = { 'rack.session' => { user_id: @user.id } }
+
+		## Act
+		post "/messages", params, fake_session
+
+		# Assert
+		expected_output = { error: "The number you've entered is non-existent." }.to_json
+		expect(last_response.body).to eq(expected_output)
+
+	end
 
 end
