@@ -23,6 +23,7 @@ gem 'unirest'
 gem 'twilio-ruby'
 
 group :test do
+	gem 'webmock'
   gem 'faker'
   gem 'rspec'
   gem 'rack-test'
