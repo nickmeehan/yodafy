@@ -176,5 +176,32 @@ describe "put /contacts/:id route" do
 
 end
 
+describe "delete /contacts/:id route" do
+
+	it "should delete the contact from the database" do
+		## Arrange
+		User.destroy_all
+		Contact.destroy_all
+		@user = User.create(phone_number: "+14033030220",
+												email: "nick@nick.ca",
+												password: "password")
+		@contact = Contact.create(phone_number: "+14039991234", name: "Han Solo")
+		@user.contacts << @contact
+		fake_session = { 'rack.session' => { user_id: @user.id } }
+		params = { id: @contact.id }
+
+		## Act
+		delete "/contacts/#{@contact.id}", params, fake_session
+
+		## Assert
+		expect(User.find(@user.id).contacts.count).to eq(0)
+
+	end
+
+
+end
+
+
+
 
 
