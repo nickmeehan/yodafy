@@ -77,9 +77,9 @@ View.prototype = {
 
 	},
 	displayContactProfile: function(response) {
-		console.log(response.contact)
+		console.log(response)
 		var profileTemplate = $('.contact').clone();
-		var contactProfile = this.view.contactProfileHelper(profileTemplate, response.contact)
+		var contactProfile = this.view.contactProfileHelper(profileTemplate, response)
 		this.view.removeSectionContent();
 		$('.homepage').prepend(contactProfile);
 	},

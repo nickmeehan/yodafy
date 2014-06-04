@@ -30,9 +30,7 @@ header {
 
 .container {
   margin: 0 auto;
-  width: 640px;
-  height: 1152px;
-  border: 1px dotted black;
+  width: 100%;
   background-color: #C0CFC4;
 }
 th {
@@ -65,12 +63,15 @@ nav {
 
 nav ul {
 	list-style-type: none;
+	padding-left: 0;
 }
 
 nav ul li {
 	display: inline-block;
-	margin: 0em 1.1em;
+	text-align: center;
+	width: 33%;
 }
+
 
 nav ul li a {
 	color: #543F23;
@@ -81,6 +82,7 @@ nav ul li a {
 nav ul li a:hover {
 	color: #46592A;
 }
+
 
 input {
 	display: block;
@@ -259,7 +261,7 @@ article.homepage_contact {
 
 article.homepage_contact a {
 	vertical-align: middle;
-	font-size: 3em;
+	font-size: 2em;
 	font-weight: bold;
 	margin: 0em 0.5em;
 }
@@ -345,4 +347,40 @@ figure.contact_photo.homepage {
 
 #contact_template {
 	display: none;
+}
+
+@media (max-width: 840px) {
+	nav ul li {
+		width: 10em;
+		margin-right: 4%;
+		margin-left: 4%;
+	}
+}
+
+@media (max-width: 650px) {
+	nav ul li {
+		width: 10em;
+		margin-right: 2%;
+		margin-left: 2%;
+	}
+
+
+
+}
+
+@media (max-width: 560px) {
+
+	nav ul li {
+		width: 100%;
+	}
+
+	#update_contact_form {
+		font-size: 2em;
+	}
+
+	#add_contact_form {
+		font-size: 2em;
+	}
+
+
 }
