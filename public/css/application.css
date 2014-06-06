@@ -1,3 +1,7 @@
+body {
+  background-color: #C0CFC4;
+}
+
 #new_yoda_message {
 	display: none;
 }
@@ -31,8 +35,8 @@ header {
 .container {
   margin: 0 auto;
   width: 100%;
-  background-color: #C0CFC4;
 }
+
 th {
   text-align: left;
 }
@@ -48,8 +52,8 @@ a.landingpage {
 	position: relative;
 	font-size: 3em;
 	font-weight: bold;
-	top: 9em;
-	padding: 1em 0.5em;
+	top: 5em;
+	padding: 0.5em 0.5em;
 	margin: 0.5em 0em;
   background-color: #87A388;
 
@@ -108,7 +112,7 @@ article.sent_message p {
 		position: relative;
 		font-size: 3em;
 		font-weight: bold;
-		top: 9em;
+		top: 5em;
 		padding: 0.5em 0em 0.5em 0em;
 		background-color: #87A388;
 }
@@ -132,7 +136,7 @@ article.sent_message p {
 	position: relative;
 	font-size: 3em;
 	font-weight: bold;
-	top: 9em;
+	top: 3.5em;
 	padding: 0.5em 0em 0.5em 0em;
 	background-color: #87A388;
 }
