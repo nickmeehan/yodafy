@@ -449,6 +449,10 @@ figure.contact_photo.homepage {
 		font-size: 2em;
 	}
 
+	article.sent_message {
+		margin: 0.5em 0em;
+	}
+
 	article.sent_message p {
 		font-size: 1.1em;
 	}
