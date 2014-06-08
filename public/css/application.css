@@ -384,8 +384,8 @@ figure.contact_photo.homepage {
 
 	figure.contact_photo.homepage {
 		display: none;
-		
 	}
+
 	article.homepage_contact a {
 		font-size: 2.5em;
 	}
@@ -468,6 +468,35 @@ figure.contact_photo.homepage {
 
 	nav ul li a {
 		font-size: 1.1em;
+	}
+
+	#new_message_form {
+		font-size: 1.5em;
+	}
+
+	#new_message_form input[type="submit"] {
+		font-size: 1.33em;
+	}
+
+	#add_contact_form {
+		font-size: 1.5em;
+
+	}
+
+	#add_contact_form input[type="text"] {
+		width: 90%;
+	}
+
+	#add_contact_form input[type="submit"] {
+		font-size: 1em;
+	}
+
+	figure.contact_photo {
+		display: none;
+	}
+
+	article.homepage_contact a {
+		font-size: 1.5em;
 	}
 
 }
