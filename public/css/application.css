@@ -492,7 +492,9 @@ figure.contact_photo.homepage {
 	}
 
 	figure.contact_photo {
-		display: none;
+		background: url('images/yoda_profile_medium.jpeg');
+		width: 150px;
+		height: 150px;
 	}
 
 	article.homepage_contact a {
@@ -510,5 +512,10 @@ figure.contact_photo.homepage {
 	#update_contact_form input[type="submit"] {
 		font-size: 1em;
 	}
+
+	.contact_info p {
+		font-size: 1.5em;
+	}
+
 
 }
