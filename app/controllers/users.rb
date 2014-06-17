@@ -18,6 +18,12 @@ delete '/sessions' do
 	redirect '/'
 end
 
+get '/demo' do
+	@user = User.find_by_email('demo@demo.com')
+	session[:user_id] = @user.id
+	redirect '/'
+end
+
 
 
 
