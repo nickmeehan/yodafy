@@ -261,7 +261,7 @@ article.homepage_contact {
 	width: 100%;
 	padding: 1em 0em;
 	margin: 1em 0em;
-	text-align: center;
+	text-align: left;
 }
 
 article.homepage_contact a {
@@ -384,6 +384,10 @@ figure.contact_photo.homepage {
 
 	figure.contact_photo.homepage {
 		display: none;
+	}
+
+	article.homepage_contact {
+		text-align: center;
 	}
 
 	article.homepage_contact a {
